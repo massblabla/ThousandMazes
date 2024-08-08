@@ -1,5 +1,5 @@
 # ThousandMazes
-### Copyright (c) massblabla [insert release year]
+**Copyright (c) [insert release year] massblabla**
 A Free (libre) game that features 1,024 randomly-generated mazes that get harder every level.
   
 ## Licensing

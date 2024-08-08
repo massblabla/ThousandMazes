@@ -5,4 +5,11 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ThousandMazes</name>
   <description>A Free (libre) game that features 1,024 randomly-generated mazes that get harder every level.</description>
+  <dependencies>
+  	<dependency>
+	  <groupId>com.moandjiezana.toml</groupId>
+	  <artifactId>toml4j</artifactId>
+	  <version>0.7.2</version>
+	</dependency>
+  </dependencies>
 </project>
