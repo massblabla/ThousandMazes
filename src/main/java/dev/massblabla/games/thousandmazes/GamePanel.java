@@ -14,18 +14,16 @@
  * ThousandMazes. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package massblabla.games.thousandmazes;
+package dev.massblabla.games.thousandmazes;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import javax.swing.JPanel;
 
-import massblabla.games.thousandmazes.config.Config;
-import massblabla.games.thousandmazes.misc.Variables;
-import massblabla.games.thousandmazes.util.KeyHandler;
+import dev.massblabla.games.thousandmazes.config.Config;
+import dev.massblabla.games.thousandmazes.entity.Player;
+import dev.massblabla.games.thousandmazes.misc.Variables;
+import dev.massblabla.games.thousandmazes.util.KeyHandler;
 
 /**
  * ThousandMazes' game panel.
@@ -39,29 +37,37 @@ public class GamePanel extends JPanel implements Runnable {
 	/* Variables+Config shortcut */
 	public static Variables var = Variables.INSTANCE;
 	public static Config conf = Config.instance;
-	
+
+	/* Gets screen width and height for autoWindowSizing */
+	Toolkit toolkit = Toolkit.getDefaultToolkit();
+	Dimension screenSize = toolkit.getScreenSize();
+
 	/* Local variables */
-	final long tileDisplaySize = conf.getDefaultTileSize() * conf.getDefaultRelativeScale();
-	final long screenWidth = conf.getTotalDisplayedColumns() * tileDisplaySize; /* Default: 1152 */
-	final long screenHeight = conf.getTotalDisplayedRows() * tileDisplaySize;   /* Default: 672 */
-																			    /* That means, by default, the aspect ratio is 12:7. */
+	public final long tileSize = conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale();
+	long windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize; /* Default: 1152 */
+	long windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
 	
 	/* KeyHandler */
 	KeyHandler kh = new KeyHandler();
 	/* The game's thread */
 	Thread gameThread;
-	
-	/* Set player's default position */
-	int playerX = 100;
-	int playerY = 100;
-	int playerSpeed = 6;
+	/* Player entity class */
+	Player player = new Player(this, kh);
 	
 	public GamePanel() {
-		this.setPreferredSize(new Dimension((int)screenWidth, (int)screenHeight));
+		this.setPreferredSize(new Dimension((int) windowWidth, (int) windowHeight));
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(kh);
 		this.setFocusable(true);
+
+		if(conf.requiresRestart.getAutoWindowSizing()) {
+			windowWidth = (long) Math.ceil(screenSize.width / 2.4);
+			windowHeight = (long) Math.ceil(screenSize.height / 2.4);
+		} else {
+			windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize;
+			windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;
+		}
 	}
 	public void startThread() {
 		gameThread = new Thread(this);
@@ -69,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	@Override
 	public void run() {
-		double drawInterval = 1000000000/conf.getFPSCap();
+		double drawInterval = 1000000000/var.tickRateCap;
 		double delta = 0;
 		long lastTime = System.nanoTime();
 		long currentTime;
@@ -91,30 +97,26 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 			
 			if(timer >= 1000000000) {
-				System.out.println("FPS: " + drawCount);
+				System.out.println("Tick Rate: " + drawCount);
 				drawCount = 0;
 				timer = 0;
+
+				System.out.println(player.x);
+				System.out.println(player.y);
+				System.out.println(player.direction);
 			}
 		}
 	}
 	public void update() {
-		if(kh.upPressed) {
-			playerY -= playerSpeed;
-		} else if(kh.leftPressed) {
-			playerX -= playerSpeed;
-		} else if(kh.downPressed) {
-			playerY += playerSpeed;
-		} else if(kh.rightPressed) {
-			playerX += playerSpeed;
-		}
+		player.update();
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g;
-		
-		g2.setColor(Color.WHITE);
-		g2.fillRect(playerX, playerY, (int)tileDisplaySize, (int)tileDisplaySize);
+
+		player.draw(g2);
+
 		g2.dispose();
 	}
 }

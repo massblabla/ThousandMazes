@@ -1,2 +1,21 @@
-.settings/
+# You should already know what a .gitignore does.
+
+# eclipse
+
+*.launch
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
 target/
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project

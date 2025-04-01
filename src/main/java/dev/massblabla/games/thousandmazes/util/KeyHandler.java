@@ -14,7 +14,7 @@
  * ThousandMazes. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package massblabla.games.thousandmazes.util;
+package dev.massblabla.games.thousandmazes.util;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
