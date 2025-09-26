@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import dev.massblabla.games.thousandmazes.config.Config;
 import dev.massblabla.games.thousandmazes.entity.Player;
 import dev.massblabla.games.thousandmazes.misc.Variables;
+import dev.massblabla.games.thousandmazes.tile.TileManager;
 import dev.massblabla.games.thousandmazes.util.KeyHandler;
 
 /**
@@ -43,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
 	Dimension screenSize = toolkit.getScreenSize();
 
 	/* Local variables */
-	public final long tileSize = conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale();
+	public final long tileSize = Math.round(conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale());
 	long windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize; /* Default: 1152 */
 	long windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
 	
@@ -53,6 +54,8 @@ public class GamePanel extends JPanel implements Runnable {
 	Thread gameThread;
 	/* Player entity class */
 	Player player = new Player(this, kh);
+    /* TileManager */
+    TileManager tm = new TileManager(this);
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension((int) windowWidth, (int) windowHeight));
@@ -115,6 +118,7 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		Graphics2D g2 = (Graphics2D)g;
 
+        tm.draw(g2);
 		player.draw(g2);
 
 		g2.dispose();

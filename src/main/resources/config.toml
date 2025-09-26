@@ -1,6 +1,6 @@
 # config.toml
-# The config of the game, divided into x parts:
-# [requires_restart], [
+# The config of the game, divided into 2 parts:
+# [requires_restart], [world_default]
 
 [requires_restart] # Requires a restart.
 # The default tile size (16x16)
@@ -14,7 +14,7 @@ defaultTileSize = 16
 # Is relative so it doesn't appear small in large
 # monitors, and again, texture packs that have bigger
 # sizes.
-# Type: long
+# Type: double
 # Default: 3
 defaultRelativeScale = 3
 # Sizes the window automatically per device resolution

@@ -18,6 +18,7 @@ package dev.massblabla.games.thousandmazes;
 
 import javax.swing.JFrame;
 
+import dev.massblabla.games.thousandmazes.generation.MazeGenerator;
 import dev.massblabla.games.thousandmazes.misc.Variables;
 
 /**
@@ -31,7 +32,7 @@ public class ThousandMazes {
 	public static Variables var = Variables.INSTANCE;
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
+        JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle(var.title + var.space + var.version);
 		

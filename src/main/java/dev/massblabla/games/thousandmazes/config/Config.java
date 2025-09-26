@@ -40,29 +40,41 @@ public class Config {
 	}
 	Toml toml = new Toml().read(accessResourceFile("config.toml"));
 	public RequiresRestart requiresRestart = toml.getTable("requires_restart").to(RequiresRestart.class);
+    public WorldDefault worldDefault = toml.getTable("world_default").to(WorldDefault.class);
 
 	/* Variables, explanations in config.toml */
 
 	/* [requires_restart]: Requires a restart. */
 	public class RequiresRestart {
 		private long defaultTileSize = toml.getLong("defaultTileSize");
-		private long defaultRelativeScale = toml.getLong("defaultRelativeScale");
+		private double defaultRelativeScale = toml.getDouble("defaultRelativeScale");
 		private boolean autoWindowSizing = toml.getBoolean("autoWindowSizing");
 		private long totalDisplayedColumns = toml.getLong("totalDisplayedColumns");
 		private long totalDisplayedRows = toml.getLong("totalDisplayedRows");
 
 		/* Getters */
 		public long getDefaultTileSize() { return defaultTileSize; }
-		public long getDefaultRelativeScale() { return defaultRelativeScale; }
+		public double getDefaultRelativeScale() { return defaultRelativeScale; }
 		public boolean getAutoWindowSizing() { return autoWindowSizing; }
 		public long getTotalDisplayedColumns() { return totalDisplayedColumns; }
 		public long getTotalDisplayedRows() { return totalDisplayedRows; }
 
 		/* Setters */
 		public void setDefaultTileSize(long in) { defaultTileSize = in;	}
-		public void setDefaultRelativeScale(long in) { defaultRelativeScale = in; }
+		public void setDefaultRelativeScale(double in) { defaultRelativeScale = in; }
 		public void setAutoWindowSizing(boolean in) { autoWindowSizing = in; }
 		public void setTotalDisplayedColumns(long in) { totalDisplayedColumns = in; }
 		public void setTotalDisplayedRows(long in) { totalDisplayedRows = in; }
 	}
+
+    /* [world_default]: The default options when world creation. */
+    public class WorldDefault {
+        private long worldLevels = toml.getLong("worldLevels");
+
+        /* Getters */
+        public long getWorldLevels() { return worldLevels; }
+
+        /* Setters */
+        public void setWorldLevels(long in) { worldLevels = in; }
+    }
 }
