@@ -35,7 +35,7 @@ public class Player extends Entity {
     GamePanel panel;
     KeyHandler kh;
     TileMapHandler player;
-    Config conf;
+    public static Config conf = Config.instance;
 
     /* Constructor */
     public Player(GamePanel panel, KeyHandler kh) {
@@ -56,7 +56,7 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            player = new TileMapHandler("/assets/thousandmazes/entities/default/thomas.png", 16);
+            player = new TileMapHandler("/assets/thousandmazes/entities/default/thomas.png", (int)conf.requiresRestart.getDefaultTileSize());
 
             north1 = player.getTile(0, 0);
             north2 = player.getTile(1, 0);

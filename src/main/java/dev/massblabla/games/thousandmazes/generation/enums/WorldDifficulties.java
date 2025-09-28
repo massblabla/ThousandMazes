@@ -22,15 +22,15 @@ package dev.massblabla.games.thousandmazes.generation.enums;
  * @author massblabla
  */
 public enum WorldDifficulties {
-    STARTER, /* 30x30, 5% */
-    EASY, /* 50x50, 10% */
-    MEDIUM, /* 70x70, 15%, default */
-    INTERMEDIATE, /* 100x100, 20% */
-    HARD, /* 150x150, 25% */
-    VERY_HARD, /* 200x200, 30% */
-    INSANE, /* 300x300, 35% */
-    EXTREME, /* 500x500, 40% */
-    HARDCORE, /* 750x750, 50%, one-life */
-    DEBUG_MODE, /* Customisable, customisable (--debug only) */
-    CUSTOM /* Customisable (on world generation) */
+    STARTER, /* 10x10, 5% */
+    EASY, /* 15x15, 8% */
+    MEDIUM, /* 20x20, 12%, default */
+    INTERMEDIATE, /* 30x30, 16% */
+    HARD, /* 40x40, 20% */
+    VERY_HARD, /* 50x50, 25% */
+    INSANE, /* 70x70, 30% */
+    EXTREME, /* 100x100, 35% */
+    HARDCORE//, /* 150x150, 40%, one-life */
+    //DEBUG_MODE, /* Customisable, customisable (--debug only) */
+    //CUSTOM /* Customisable (on world generation) */
 }

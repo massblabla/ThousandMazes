@@ -39,7 +39,7 @@ public class TileManager {
 
     public TileManager(GamePanel panel) {
         this.panel = panel;
-        tile = new Tile[50] /* 7 materials (4 tiles), chest, 7 obstacles per material */;
+        tile = new Tile[51] /* 7 materials (4 tiles), chest, 7 obstacles per material */;
         mapTileNum = new int[(int)conf.requiresRestart.getTotalDisplayedColumns()][(int)conf.requiresRestart.getTotalDisplayedRows()];
 
         getTileTexture();
@@ -47,13 +47,20 @@ public class TileManager {
 
     public void getTileTexture() {
         try {
-            texture = new TileMapHandler("/assets/thousandmazes/tilemap.png", 16);
+            texture = new TileMapHandler("/assets/thousandmazes/tilemap.png", (int)conf.requiresRestart.getDefaultTileSize());
 
+            /* Tile 0 (nothingness, null) */
             tile[0] = new Tile();
             tile[0].image = texture.getTile(0, 0);
 
+            /* Tile 1 (default wall) */
             tile[1] = new Tile();
             tile[1].image = texture.getTile(1, 0);
+
+            /* Tile 2 (default path) */
+            tile[2] = new Tile();
+            tile[2].image = texture.getTile(2, 0);
+
         } catch (IOException ioex) {
             ioex.printStackTrace();
         }
@@ -66,7 +73,7 @@ public class TileManager {
         int y = 0;
 
         while(col < conf.requiresRestart.getTotalDisplayedColumns() && row < conf.requiresRestart.getTotalDisplayedRows()) {
-            g2.drawImage(tile[0].image, x, y, (int)panel.tileSize, (int)panel.tileSize, null);
+            g2.drawImage(tile[1].image, x, y, (int)panel.tileSize, (int)panel.tileSize, null);
             col++;
             x += panel.tileSize;
 

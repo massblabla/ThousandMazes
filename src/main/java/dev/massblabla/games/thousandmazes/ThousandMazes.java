@@ -19,7 +19,11 @@ package dev.massblabla.games.thousandmazes;
 import javax.swing.JFrame;
 
 import dev.massblabla.games.thousandmazes.generation.MazeGenerator;
+import dev.massblabla.games.thousandmazes.generation.enums.WorldDifficulties;
 import dev.massblabla.games.thousandmazes.misc.Variables;
+import dev.massblabla.utils.worldregion.WorldRegion;
+
+import java.io.IOException;
 
 /**
  * ThousandMazes' main class.
@@ -32,6 +36,17 @@ public class ThousandMazes {
 	public static Variables var = Variables.INSTANCE;
 	
 	public static void main(String[] args) {
+		String seed = "talithazalfanaifah:)))";
+		MazeGenerator gen = new MazeGenerator(WorldDifficulties.MEDIUM, seed.hashCode());
+		WorldRegion region = gen.generate(gen.getSide());
+
+		try {
+			region.save("world_region.dat");
+			System.out.println("Saved world_region.dat successfully!");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
         JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle(var.title + var.space + var.version);
@@ -45,5 +60,37 @@ public class ThousandMazes {
 		frame.setVisible(true);
 		
 		panel.startThread();
+		String path = "world_region.dat";
+
+		try {
+			// Load the world region from file
+			WorldRegion region1 = WorldRegion.load(path);
+
+			// Access its properties
+			System.out.println("Loaded world with side: " + region1.getSide());
+			System.out.println("Tile count: " + region1.getTiles().length);
+
+			// Optional: print the maze as ASCII
+			printMaze(region1);
+
+		} catch (IOException e) {
+			System.err.println("Failed to load WorldRegion: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	// Simple ASCII visualization of the 1D maze
+	private static void printMaze(WorldRegion region) {
+		int side = region.getSide();
+		int mazeRows = side * 2 + 1;
+		int mazeCols = side * 2 + 1;
+		byte[] tiles = region.getTiles();
+
+		for (int r = 0; r < mazeRows; r++) {
+			for (int c = 0; c < mazeCols; c++) {
+				System.out.print(tiles[r * mazeCols + c] == 1 ? "█" : " ");
+			}
+			System.out.println();
+		}
 	}
 }

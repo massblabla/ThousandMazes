@@ -29,7 +29,6 @@ import java.util.Arrays;
  * Example: AB C3 DE 01 00 00 00 00 00 00 00 00 53 30 30 31
  * That is a world using WorldRegion version 0.0.1, with the side length of 1 tile.
  * Then there is data, which contains the entire world data. 1 tile takes 8 bits, which is at maximum 256 tiles.
- * Then it is suffixed by X null bytes for padding.
  *
  * @version 0.0.1-SNAPSHOT
  * @author massblabla
@@ -66,13 +65,6 @@ public class WorldRegion {
 
             // ====== Tile data (1 byte each) ======
             out.write(tiles);
-
-            // ====== Padding to multiple of 16 ======
-            long size = new File(path).length();
-            int padding = (int) (16 - (size % 16));
-            if (padding != 16) {
-                for (int i = 0; i < padding; i++) out.writeByte(0);
-            }
         }
     }
 
