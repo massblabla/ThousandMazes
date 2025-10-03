@@ -17,6 +17,7 @@
 package dev.massblabla.games.thousandmazes.generation;
 
 import dev.massblabla.games.thousandmazes.generation.enums.WorldDifficulties;
+import dev.massblabla.games.thousandmazes.generation.enums.WorldMaterials;
 import dev.massblabla.utils.worldregion.WorldGenerator;
 import dev.massblabla.utils.worldregion.WorldRegion;
 
@@ -31,19 +32,24 @@ import java.util.*;
 public class MazeGenerator implements WorldGenerator {
     private long seed;
     private int side;
+    private byte[] tiles;
 
-    public MazeGenerator(WorldDifficulties difficulty, long seed) {
-        switch(difficulty) {
-            case WorldDifficulties.STARTER -> side = 10;
-            case WorldDifficulties.EASY -> side = 15;
-            case WorldDifficulties.MEDIUM -> side = 20;
-            case WorldDifficulties.INTERMEDIATE -> side = 30;
-            case WorldDifficulties.HARD -> side = 40;
-            case WorldDifficulties.VERY_HARD -> side = 50;
-            case WorldDifficulties.INSANE -> side = 70;
-            case WorldDifficulties.EXTREME -> side = 100;
-            case WorldDifficulties.HARDCORE -> side = 150;
+    public MazeGenerator(WorldDifficulties difficulty, WorldMaterials material, long seed) {
+        switch (difficulty) {
+            case STARTER -> side = 10;
+            case EASY -> side = 15;
+            case MEDIUM -> side = 20;
+            case INTERMEDIATE -> side = 30;
+            case HARD -> side = 40;
+            case VERY_HARD -> side = 50;
+            case INSANE -> side = 70;
+            case EXTREME -> side = 100;
+            case HARDCORE -> side = 150;
             default -> throw new IllegalArgumentException("Invalid world difficulty.");
+        }
+        switch (material) {
+            case DEBUGMD -> tiles = new byte[]{0x01, 0x03, 0x02, 0x04};
+            case EARTHLY -> tiles = new byte[]{0x05, 0x07, 0x06, 0x08};
         }
 
         generate(side);

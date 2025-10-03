@@ -19,6 +19,7 @@ package dev.massblabla.games.thousandmazes.tile;
 import dev.massblabla.games.thousandmazes.GamePanel;
 import dev.massblabla.games.thousandmazes.config.Config;
 import dev.massblabla.games.thousandmazes.util.TileMapHandler;
+import dev.massblabla.utils.worldregion.WorldRegion;
 
 import java.awt.*;
 import java.io.IOException;
@@ -66,24 +67,40 @@ public class TileManager {
         }
     }
 
+    public void loadMaze(WorldRegion region) {
+        int side = region.getSide();
+        int mazeRows = side * 2 + 1;
+        int mazeCols = side * 2 + 1;
+        byte[] tiles = region.getTiles();
+
+        int col = 0;
+        int row = 0;
+
+        while(col < mazeCols) {
+
+        }
+    }
+
     public void draw(Graphics2D g2) {
         int col = 0;
         int row = 0;
         int x = 0;
         int y = 0;
 
-        while(col < conf.requiresRestart.getTotalDisplayedColumns() && row < conf.requiresRestart.getTotalDisplayedRows()) {
-            g2.drawImage(tile[1].image, x, y, (int)panel.tileSize, (int)panel.tileSize, null);
-            col++;
-            x += panel.tileSize;
 
-            if(col == conf.requiresRestart.getTotalDisplayedColumns()) {
-                col = 0;
-                x = 0;
 
-                row++;
-                y += panel.tileSize;
-            }
-        }
+//        while(col < conf.requiresRestart.getTotalDisplayedColumns() && row < conf.requiresRestart.getTotalDisplayedRows()) {
+//            g2.drawImage(tile[1].image, x, y, (int)panel.tileSize, (int)panel.tileSize, null);
+//            col++;
+//            x += panel.tileSize;
+//
+//            if(col == conf.requiresRestart.getTotalDisplayedColumns()) {
+//                col = 0;
+//                x = 0;
+//
+//                row++;
+//                y += panel.tileSize;
+//            }
+//        }
     }
 }

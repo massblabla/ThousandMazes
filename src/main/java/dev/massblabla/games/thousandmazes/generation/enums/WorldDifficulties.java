@@ -31,6 +31,5 @@ public enum WorldDifficulties {
     INSANE, /* 70x70, 30% */
     EXTREME, /* 100x100, 35% */
     HARDCORE//, /* 150x150, 40%, one-life */
-    //DEBUG_MODE, /* Customisable, customisable (--debug only) */
     //CUSTOM /* Customisable (on world generation) */
 }

@@ -100,13 +100,9 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 			
 			if(timer >= 1000000000) {
-				System.out.println("Tick Rate: " + drawCount);
+				System.out.println("Tick Rate: " + drawCount + ", X: " + player.x + " Y: " + player.y + " Direction: " + player.direction);
 				drawCount = 0;
 				timer = 0;
-
-				System.out.println(player.x);
-				System.out.println(player.y);
-				System.out.println(player.direction);
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 # You should already know what a .gitignore does.
 
+run/
+
 # eclipse
 
 *.launch

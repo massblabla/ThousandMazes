@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 
 import dev.massblabla.games.thousandmazes.generation.MazeGenerator;
 import dev.massblabla.games.thousandmazes.generation.enums.WorldDifficulties;
+import dev.massblabla.games.thousandmazes.generation.enums.WorldMaterials;
 import dev.massblabla.games.thousandmazes.misc.Variables;
 import dev.massblabla.utils.worldregion.WorldRegion;
 
@@ -37,7 +38,7 @@ public class ThousandMazes {
 	
 	public static void main(String[] args) {
 		String seed = "talithazalfanaifah:)))";
-		MazeGenerator gen = new MazeGenerator(WorldDifficulties.MEDIUM, seed.hashCode());
+		MazeGenerator gen = new MazeGenerator(WorldDifficulties.MEDIUM, WorldMaterials.DEBUGMD, seed.hashCode());
 		WorldRegion region = gen.generate(gen.getSide());
 
 		try {

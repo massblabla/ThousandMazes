@@ -22,11 +22,11 @@ package dev.massblabla.games.thousandmazes.generation.enums;
  * @author massblabla
  */
 public enum WorldMaterials {
+    DEBUGMD, /* Customisable (--debug only) */
     EARTHLY, /* Uses #thousandmazes:earthly materials, default */
     HELLISH, /* Uses #thousandmazes:hellish materials */
     STELLAR, /* Uses #thousandmazes:stellar materials */
     DUNGEON, /* Uses #thousandmazes:dungeon materials */
     COLORED, /* Uses #thousandmazes:colored materials */
-    DEBUGMD, /* Customisable (--debug only) */
     CUSTOM /* Customisable (on world generation) */
 }
