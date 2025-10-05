@@ -28,7 +28,7 @@ import java.io.IOException;
  * Manages tiles and its rendering.
  *
  *
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class TileManager {

@@ -30,7 +30,7 @@ import dev.massblabla.games.thousandmazes.util.KeyHandler;
 /**
  * ThousandMazes' game panel.
  * 
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class GamePanel extends JPanel implements Runnable {

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>massblabla.games</groupId>
   <artifactId>ThousandMazes</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <name>ThousandMazes</name>
   <description>A Free (libre) game that features 1,024 randomly-generated mazes that get harder every level.</description>
   <dependencies>

@@ -22,7 +22,7 @@ import dev.massblabla.games.thousandmazes.entity.Entity;
 /**
  * Checks the collision.
  *
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class CollisionChecker {

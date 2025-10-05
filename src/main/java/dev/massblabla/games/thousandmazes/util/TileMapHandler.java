@@ -23,7 +23,7 @@ import java.io.InputStream;
 /**
  * Handles tilemaps so not too much boilerplate code (Java is already tons of boilerplate tho.)
  *
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class TileMapHandler {

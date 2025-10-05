@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * The class for the entity player.
  *
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class Player extends Entity {

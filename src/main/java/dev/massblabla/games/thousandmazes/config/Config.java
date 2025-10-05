@@ -23,7 +23,7 @@ import com.moandjiezana.toml.Toml;
 /**
  * Config class for Toml4J to map.
  * 
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class Config {

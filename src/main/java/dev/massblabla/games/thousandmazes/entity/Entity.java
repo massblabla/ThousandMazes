@@ -22,7 +22,7 @@ import java.awt.image.BufferedImage;
 /**
  * Parent class for any entities.
  *
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class Entity {

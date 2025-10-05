@@ -18,7 +18,7 @@ package dev.massblabla.games.thousandmazes.generation.enums;
 /**
  * Contains difficulties per world can use. If changed can lead to world corruption.
  *
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public enum WorldDifficulties {

@@ -19,7 +19,7 @@ package dev.massblabla.games.thousandmazes.misc;
 /**
  * Stores constant variables for ThousandMazes. I just like doing this.
  * 
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class Variables {
@@ -31,6 +31,6 @@ public class Variables {
 	
 	/* Main variables, should be self-explanatory from its names. */
 	public final String title = "ThousandMazes";
-	public final String version = "0.0.1-SNAPSHOT";
+	public final String version = "0.1.0-SNAPSHOT";
 	public final long tickRateCap = 60;
 }

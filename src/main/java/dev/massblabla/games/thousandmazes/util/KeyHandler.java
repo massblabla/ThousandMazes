@@ -22,7 +22,7 @@ import java.awt.event.KeyListener;
 /**
  * KeyHandler so that the keyboard works.
  * 
- * @version 0.0.1-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
 public class KeyHandler implements KeyListener {
