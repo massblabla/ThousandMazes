@@ -18,6 +18,7 @@ package dev.massblabla.games.thousandmazes.entity;
 
 import dev.massblabla.games.thousandmazes.GamePanel;
 import dev.massblabla.games.thousandmazes.config.Config;
+import dev.massblabla.games.thousandmazes.tile.TileManager;
 import dev.massblabla.games.thousandmazes.util.KeyHandler;
 import dev.massblabla.games.thousandmazes.util.TileMapHandler;
 
@@ -36,19 +37,33 @@ public class Player extends Entity {
     KeyHandler kh;
     TileMapHandler player;
     public static Config conf = Config.instance;
+    TileManager tm;
+
+    public final int screenX;
+    public final int screenY;
 
     /* Constructor */
     public Player(GamePanel panel, KeyHandler kh) {
         this.panel = panel;
         this.kh = kh;
+        this.tm = new TileManager(panel);
+
+        screenX = ((int)panel.windowWidth / 2) - ((int)panel.tileSize / 2);
+        screenY = ((int)panel.windowHeight / 2) - ((int)panel.tileSize / 2);
+
+        hitbox = new Rectangle();
+        hitbox.x = 3 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.y = 3 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.width = 12 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.height = 12 * (int)conf.requiresRestart.getDefaultRelativeScale();;
 
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        worldX = (int)panel.tileSize;
+        worldY = (int)panel.tileSize * (tm.region.getSide() * 2 - 1);
         speed = 4;
 
         direction = "south";
@@ -75,16 +90,26 @@ public class Player extends Entity {
         if(kh.upPressed || kh.rightPressed || kh.downPressed || kh.leftPressed) {
             if(kh.upPressed) {
                 direction = "north";
-                y -= speed;
             } else if(kh.rightPressed) {
                 direction = "east";
-                x += speed;
             } else if(kh.downPressed) {
                 direction = "south";
-                y += speed;
             } else if(kh.leftPressed) {
                 direction = "west";
-                x -= speed;
+            }
+
+            // check tile collision
+            isCollisionOn = false;
+            panel.cc.checkTile(this);
+
+            // if !collision player can move
+            if(!isCollisionOn) {
+                switch(direction) {
+                    case "north" -> worldY -= speed;
+                    case "east" -> worldX += speed;
+                    case "south" -> worldY += speed;
+                    case "west" -> worldX -= speed;
+                }
             }
 
             textureCounter++;
@@ -136,6 +161,6 @@ public class Player extends Entity {
                 break;
         }
 
-        g2.drawImage(image, x, y, (int)panel.tileSize, (int)panel.tileSize, null);
+        g2.drawImage(image, screenX, screenY, (int)panel.tileSize, (int)panel.tileSize, null);
     }
 }

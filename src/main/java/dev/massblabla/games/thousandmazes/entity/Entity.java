@@ -16,6 +16,7 @@
 
 package dev.massblabla.games.thousandmazes.entity;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -26,7 +27,7 @@ import java.awt.image.BufferedImage;
  */
 public class Entity {
     /* Entity's coordinates and speed */
-    public int x, y;
+    public int worldX, worldY;
     public int speed;
 
     /* The textures of the entity */
@@ -36,4 +37,8 @@ public class Entity {
 
     public int textureCounter = 0;
     public int textureNum = 1;
+
+    /* Hitbox */
+    public Rectangle hitbox;
+    public boolean isCollisionOn = false;
 }

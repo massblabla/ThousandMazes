@@ -27,6 +27,6 @@ public enum WorldMaterials {
     HELLISH, /* Uses #thousandmazes:hellish materials */
     STELLAR, /* Uses #thousandmazes:stellar materials */
     DUNGEON, /* Uses #thousandmazes:dungeon materials */
-    COLORED, /* Uses #thousandmazes:colored materials */
-    CUSTOM /* Customisable (on world generation) */
+    COLORED//, /* Uses #thousandmazes:colored materials */
+    //CUSTOM /* Customisable (on world generation) */
 }

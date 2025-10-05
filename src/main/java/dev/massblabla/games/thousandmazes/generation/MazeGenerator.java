@@ -30,26 +30,32 @@ import java.util.*;
  * @author massblabla
  */
 public class MazeGenerator implements WorldGenerator {
-    private long seed;
-    private int side;
+    private final long seed;
+    private final int side;
     private byte[] tiles;
 
     public MazeGenerator(WorldDifficulties difficulty, WorldMaterials material, long seed) {
         switch (difficulty) {
-            case STARTER -> side = 10;
-            case EASY -> side = 15;
-            case MEDIUM -> side = 20;
-            case INTERMEDIATE -> side = 30;
-            case HARD -> side = 40;
-            case VERY_HARD -> side = 50;
-            case INSANE -> side = 70;
-            case EXTREME -> side = 100;
-            case HARDCORE -> side = 150;
+            case STARTER -> side = 20;
+            case EASY -> side = 30;
+            case MEDIUM -> side = 40;
+            case INTERMEDIATE -> side = 60;
+            case HARD -> side = 80;
+            case VERY_HARD -> side = 100;
+            case INSANE -> side = 140;
+            case EXTREME -> side = 200;
+            case HARDCORE -> side = 300;
             default -> throw new IllegalArgumentException("Invalid world difficulty.");
         }
         switch (material) {
-            case DEBUGMD -> tiles = new byte[]{0x01, 0x03, 0x02, 0x04};
-            case EARTHLY -> tiles = new byte[]{0x05, 0x07, 0x06, 0x08};
+            // format: wall, obstacle, path, entrance/exit
+            case DEBUGMD -> tiles = new byte[]{0x01, 0x02, 0x03, 0x04};
+            case EARTHLY -> tiles = new byte[]{0x05, 0x06, 0x07, 0x08};
+            case HELLISH -> tiles = new byte[]{0x09, 0x0A, 0x0B, 0x0C};
+            case STELLAR -> tiles = new byte[]{0x0D, 0x0E, 0x0F, 0x10};
+            case DUNGEON -> tiles = new byte[]{0x11, 0x12, 0x13, 0x14};
+            case COLORED -> tiles = new byte[]{0x15, 0x16, 0x17, 0x18};
+            default -> throw new IllegalArgumentException("Invalid world material type.");
         }
 
         generate(side);
@@ -88,45 +94,64 @@ public class MazeGenerator implements WorldGenerator {
         int mazeRows = rows * 2 + 1;
         int mazeCols = cols * 2 + 1;
         byte[][] maze2D = new byte[mazeRows][mazeCols];
-        for (byte[] row : maze2D) Arrays.fill(row, (byte)1);
 
-        // open cells
+        // Fill everything with walls initially
+        for (byte[] row : maze2D) Arrays.fill(row, tiles[0]); // wall
+
+        // Mark open cells (temporary)
         for (int r = 0; r < rows; r++)
             for (int c = 0; c < cols; c++)
-                maze2D[r * 2 + 1][c * 2 + 1] = 0;
+                maze2D[r * 2 + 1][c * 2 + 1] = 1; // temporary for open space
 
-        // walls
-        class Wall { int a, b, wr, wc; Wall(int a, int b, int wr, int wc) { this.a=a; this.b=b; this.wr=wr; this.wc=wc; } }
+        // Prepare walls for Kruskal
+        class Wall {
+            int a, b, wr, wc;
+            Wall(int a, int b, int wr, int wc) { this.a = a; this.b = b; this.wr = wr; this.wc = wc; }
+        }
         List<Wall> walls = new ArrayList<>();
         for (int r = 0; r < rows; r++)
             for (int c = 0; c < cols; c++) {
                 int cell = r * cols + c;
-                if (r > 0) walls.add(new Wall(cell, (r-1)*cols+c, r*2, c*2+1));
-                if (c > 0) walls.add(new Wall(cell, r*cols+(c-1), r*2+1, c*2));
+                if (r > 0) walls.add(new Wall(cell, (r - 1) * cols + c, r * 2, c * 2 + 1));
+                if (c > 0) walls.add(new Wall(cell, r * cols + (c - 1), r * 2 + 1, c * 2));
             }
 
-        // shuffle walls
+        // Shuffle walls
         for (int i = walls.size() - 1; i > 0; i--) {
-            int j = (int) Math.floor(rng.nextDouble()*(i+1));
+            int j = (int) Math.floor(rng.nextDouble() * (i + 1));
             Collections.swap(walls, i, j);
         }
 
-        // Kruskal
-        int[] parent = new int[mazeRows * mazeCols];
+        // Union-find setup
+        int[] parent = new int[rows * cols];
         for (int i = 0; i < parent.length; i++) parent[i] = i;
 
+        // Kruskal's algorithm
         for (Wall w : walls) {
-            int a = find(parent, w.a);
-            int b = find(parent, w.b);
-            if (a != b) {
-                union(parent, a, b);
-                maze2D[w.wr][w.wc] = 0;
+            int aRoot = find(parent, w.a);
+            int bRoot = find(parent, w.b);
+            if (aRoot != bRoot) {
+                union(parent, aRoot, bRoot);
+                maze2D[w.wr][w.wc] = 1; // temporary open
             }
         }
 
-        // entrance/exit
-        maze2D[rows*2][1] = 0;      // bottom-left
-        maze2D[1][cols*2] = 0;      // top-right
+        // Entrance and exit
+        maze2D[rows * 2][1] = 2;      // bottom-left entrance (temporary)
+        maze2D[1][cols * 2] = 2;      // top-right exit (temporary)
+
+        // Map temporary values to actual tiles
+        for (int r = 0; r < mazeRows; r++) {
+            for (int c = 0; c < mazeCols; c++) {
+                if ((r == rows * 2 && c == 1) || (r == 1 && c == cols * 2)) {
+                    maze2D[r][c] = tiles[3]; // entrance/exit
+                } else if (maze2D[r][c] == 1 || maze2D[r][c] == 2) {
+                    maze2D[r][c] = tiles[2]; // open space
+                } else {
+                    maze2D[r][c] = tiles[0]; // wall
+                }
+            }
+        }
 
         // Flatten to 1D
         byte[] maze1D = new byte[mazeRows * mazeCols];

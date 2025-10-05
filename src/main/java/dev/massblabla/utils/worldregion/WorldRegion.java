@@ -98,7 +98,7 @@ public class WorldRegion {
             int side = Integer.parseInt(sStr.substring(1));
 
             // Read tiles
-            int tileCount = side * side;
+            int tileCount = (side * 2 + 1) * (side * 2 + 1);
             byte[] tiles = new byte[tileCount];
             in.readFully(tiles);
 

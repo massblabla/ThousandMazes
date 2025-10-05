@@ -24,6 +24,7 @@ import dev.massblabla.games.thousandmazes.config.Config;
 import dev.massblabla.games.thousandmazes.entity.Player;
 import dev.massblabla.games.thousandmazes.misc.Variables;
 import dev.massblabla.games.thousandmazes.tile.TileManager;
+import dev.massblabla.games.thousandmazes.util.CollisionChecker;
 import dev.massblabla.games.thousandmazes.util.KeyHandler;
 
 /**
@@ -45,17 +46,19 @@ public class GamePanel extends JPanel implements Runnable {
 
 	/* Local variables */
 	public final long tileSize = Math.round(conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale());
-	long windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize; /* Default: 1152 */
-	long windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
-	
+	public long windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize; /* Default: 1152 */
+	public long windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
+
 	/* KeyHandler */
 	KeyHandler kh = new KeyHandler();
 	/* The game's thread */
 	Thread gameThread;
 	/* Player entity class */
-	Player player = new Player(this, kh);
+    public Player player = new Player(this, kh);
+    /* CollisionChecker */
+    public CollisionChecker cc = new CollisionChecker(this);
     /* TileManager */
-    TileManager tm = new TileManager(this);
+    public TileManager tm = new TileManager(this);
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension((int) windowWidth, (int) windowHeight));
@@ -100,7 +103,7 @@ public class GamePanel extends JPanel implements Runnable {
 			}
 			
 			if(timer >= 1000000000) {
-				System.out.println("Tick Rate: " + drawCount + ", X: " + player.x + " Y: " + player.y + " Direction: " + player.direction);
+				System.out.println("Tick Rate: " + drawCount + ", X: " + player.worldX + " Y: " + player.worldY + " Direction: " + player.direction);
 				drawCount = 0;
 				timer = 0;
 			}
