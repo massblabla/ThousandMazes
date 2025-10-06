@@ -26,7 +26,7 @@ import dev.massblabla.games.thousandmazes.entity.Entity;
  * @author massblabla
  */
 public class CollisionChecker {
-    GamePanel panel;
+    final GamePanel panel;
 
     public CollisionChecker(GamePanel panel) {
         this.panel = panel;

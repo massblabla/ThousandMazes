@@ -33,11 +33,11 @@ import java.io.IOException;
  * @author massblabla
  */
 public class Player extends Entity {
-    GamePanel panel;
-    KeyHandler kh;
+    final GamePanel panel;
+    final KeyHandler kh;
     TileMapHandler player;
-    public static Config conf = Config.instance;
-    TileManager tm;
+    public static final Config conf = Config.instance;
+    final TileManager tm;
 
     public final int screenX;
     public final int screenY;
@@ -52,10 +52,10 @@ public class Player extends Entity {
         screenY = ((int)panel.windowHeight / 2) - ((int)panel.tileSize / 2);
 
         hitbox = new Rectangle();
-        hitbox.x = 3 * (int)conf.requiresRestart.getDefaultRelativeScale();
-        hitbox.y = 3 * (int)conf.requiresRestart.getDefaultRelativeScale();
-        hitbox.width = 12 * (int)conf.requiresRestart.getDefaultRelativeScale();
-        hitbox.height = 12 * (int)conf.requiresRestart.getDefaultRelativeScale();;
+        hitbox.x = 5 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.y = 5 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.width = 6 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.height = 6 * (int)conf.requiresRestart.getDefaultRelativeScale();
 
         setDefaultValues();
         getPlayerImage();

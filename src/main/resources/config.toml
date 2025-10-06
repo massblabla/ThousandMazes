@@ -36,7 +36,7 @@ totalDisplayedRows = 14
 [world_default] # The default options when world creation.
 # How many levels should the world have.
 # Yeah, it isn't always ThousandMazes, but it's the default
-# anyways. Preferrably use a number divisible by 8.
+# anyway. Preferrably use a number divisible by 8.
 # Irreversible after world creation.
 # Type: long
 # Default: 1024

@@ -34,7 +34,7 @@ import java.io.IOException;
  */
 public class ThousandMazes {
 	/* Variables shortcut */
-	public static Variables var = Variables.INSTANCE;
+	public static final Variables var = Variables.INSTANCE;
 	
 	public static void main(String[] args) {
 		MazeGenerator gen = new MazeGenerator(WorldDifficulties.STARTER, WorldMaterials.EARTHLY, 525764355);
@@ -60,37 +60,5 @@ public class ThousandMazes {
 		frame.setVisible(true);
 		
 		panel.startThread();
-		String path = "world_region.dat";
-
-		try {
-			// Load the world region from file
-			WorldRegion region1 = WorldRegion.load(path);
-
-			// Access its properties
-			System.out.println("Loaded world with side: " + region1.getSide());
-			System.out.println("Tile count: " + region1.getTiles().length);
-
-			// Optional: print the maze as ASCII
-			printMaze(region1);
-
-		} catch (IOException e) {
-			System.err.println("Failed to load WorldRegion: " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
-	// Simple ASCII visualization of the 1D maze
-	private static void printMaze(WorldRegion region) {
-		int side = region.getSide();
-		int mazeRows = side * 2 + 1;
-		int mazeCols = side * 2 + 1;
-		byte[] tiles = region.getTiles();
-
-		for (int r = 0; r < mazeRows; r++) {
-			for (int c = 0; c < mazeCols; c++) {
-				System.out.print(tiles[r * mazeCols + c] == 1 ? "█" : " ");
-			}
-			System.out.println();
-		}
 	}
 }

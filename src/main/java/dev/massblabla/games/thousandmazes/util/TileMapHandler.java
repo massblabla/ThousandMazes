@@ -27,8 +27,8 @@ import java.io.InputStream;
  * @author massblabla
  */
 public class TileMapHandler {
-    private BufferedImage tilemap;
-    private int tileSize;
+    private final BufferedImage tilemap;
+    private final int tileSize;
 
     public TileMapHandler(String path, int tileSize) throws IOException {
         this.tileSize = tileSize;

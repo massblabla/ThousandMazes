@@ -28,7 +28,7 @@ import com.moandjiezana.toml.Toml;
  */
 public class Config {
 	/* Instance accessor */
-	public static Config instance = new Config();
+	public static final Config instance = new Config();
 	
 	public static InputStream accessResourceFile(String file) {
 		InputStream is = Config.class.getClassLoader().getResourceAsStream(file);
@@ -38,9 +38,9 @@ public class Config {
         
         return is;
 	}
-	Toml toml = new Toml().read(accessResourceFile("config.toml"));
-	public RequiresRestart requiresRestart = toml.getTable("requires_restart").to(RequiresRestart.class);
-    public WorldDefault worldDefault = toml.getTable("world_default").to(WorldDefault.class);
+	final Toml toml = new Toml().read(accessResourceFile("config.toml"));
+	public final RequiresRestart requiresRestart = toml.getTable("requires_restart").to(RequiresRestart.class);
+    public final WorldDefault worldDefault = toml.getTable("world_default").to(WorldDefault.class);
 
 	/* Variables, explanations in config.toml */
 

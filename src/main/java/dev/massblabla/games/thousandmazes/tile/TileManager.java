@@ -34,7 +34,7 @@ import java.io.IOException;
 public class TileManager {
     GamePanel panel;
     public Tile[] tile;
-    public static Config conf = Config.instance;
+    public static final Config conf = Config.instance;
     TileMapHandler texture;
 
     public WorldRegion region;

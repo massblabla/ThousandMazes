@@ -17,6 +17,7 @@
 package dev.massblabla.games.thousandmazes;
 
 import java.awt.*;
+import java.io.Serial;
 
 import javax.swing.JPanel;
 
@@ -34,15 +35,16 @@ import dev.massblabla.games.thousandmazes.util.KeyHandler;
  * @author massblabla
  */
 public class GamePanel extends JPanel implements Runnable {
-	private static final long serialVersionUID = -3544079111988284342L;
+	@Serial
+    private static final long serialVersionUID = -3544079111988284342L;
 	
 	/* Variables+Config shortcut */
-	public static Variables var = Variables.INSTANCE;
-	public static Config conf = Config.instance;
+	public static final Variables var = Variables.INSTANCE;
+	public static final Config conf = Config.instance;
 
 	/* Gets screen width and height for autoWindowSizing */
-	Toolkit toolkit = Toolkit.getDefaultToolkit();
-	Dimension screenSize = toolkit.getScreenSize();
+    final Toolkit toolkit = Toolkit.getDefaultToolkit();
+	final Dimension screenSize = toolkit.getScreenSize();
 
 	/* Local variables */
 	public final long tileSize = Math.round(conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale());
@@ -50,15 +52,15 @@ public class GamePanel extends JPanel implements Runnable {
 	public long windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
 
 	/* KeyHandler */
-	KeyHandler kh = new KeyHandler();
+    final KeyHandler kh = new KeyHandler();
 	/* The game's thread */
 	Thread gameThread;
 	/* Player entity class */
-    public Player player = new Player(this, kh);
+    public final Player player = new Player(this, kh);
     /* CollisionChecker */
-    public CollisionChecker cc = new CollisionChecker(this);
+    public final CollisionChecker cc = new CollisionChecker(this);
     /* TileManager */
-    public TileManager tm = new TileManager(this);
+    public final TileManager tm = new TileManager(this);
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension((int) windowWidth, (int) windowHeight));
@@ -81,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	@Override
 	public void run() {
-		double drawInterval = 1000000000/var.tickRateCap;
+		double drawInterval = (double)1000000000 / var.tickRateCap;
 		double delta = 0;
 		long lastTime = System.nanoTime();
 		long currentTime;

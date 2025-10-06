@@ -38,8 +38,8 @@ public class WorldRegion {
     private static final byte VERSION = 0x01; // 0.0.1 (2-3-3 scheme collapsed into one byte)
     private static final int HEADER_NULLS = 8;
 
-    private int side;
-    private byte[] tiles; // 1 byte = 1 tile
+    private final int side;
+    private final byte[] tiles; // 1 byte = 1 tile
 
     public WorldRegion(int side, byte[] tiles) {
         this.side = side;
