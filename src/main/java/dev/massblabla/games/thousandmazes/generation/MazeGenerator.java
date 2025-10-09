@@ -16,7 +16,6 @@
 
 package dev.massblabla.games.thousandmazes.generation;
 
-import dev.massblabla.games.thousandmazes.config.Config;
 import dev.massblabla.games.thousandmazes.generation.enums.WorldDifficulties;
 import dev.massblabla.games.thousandmazes.generation.enums.WorldMaterials;
 import dev.massblabla.utils.worldregion.WorldGenerator;
@@ -103,13 +102,7 @@ public class MazeGenerator implements WorldGenerator {
                 maze2D[r * 2 + 1][c * 2 + 1] = 1; // temporary for open space
 
         // Prepare walls for Kruskal
-        class Wall {
-            final int a;
-            final int b;
-            final int wr;
-            final int wc;
-            Wall(int a, int b, int wr, int wc) { this.a = a; this.b = b; this.wr = wr; this.wc = wc; }
-        }
+        record Wall(int a, int b, int wr, int wc) { }
         List<Wall> walls = new ArrayList<>();
         for (int r = 0; r < side; r++)
             for (int c = 0; c < side; c++) {
@@ -155,12 +148,7 @@ public class MazeGenerator implements WorldGenerator {
             }
         }
 
-        // Flatten to 1D
-        byte[] maze1D = new byte[mazeRows * mazeCols];
-        for (int r = 0; r < mazeRows; r++)
-            System.arraycopy(maze2D[r], 0, maze1D, r * mazeCols, mazeCols);
-
-        return new WorldRegion(side, maze1D);
+        return new WorldRegion(side, maze2D);
     }
 
     public int getSide() {

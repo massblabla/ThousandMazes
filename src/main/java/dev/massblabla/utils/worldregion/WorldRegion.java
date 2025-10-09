@@ -23,28 +23,21 @@ import java.util.Arrays;
  * WorldRegion (.dat) is a world format for 2D multi-square level world games that tries to have a small file size.
  * WorldRegion files contain this in the following:
  * Header, which contains the magic number (0xABC3DE), followed immediately by the magic number, which is derived from
- * the version number (now, 0.0.1), and then calculated using this scheme: 2-3-3 (2 bits for major, 3 bits for minor,
- * and 3 bits for patch), with the maximum being 3.7.7. The number for 0.0.1 is 0x01. Then it is followed by 4 null
- * bytes, and then by ASCII S followed by the 3-number side length, for example S001 (0x53303031).
+ * the version number (now, 0.0.2), and then calculated using this scheme: 2-3-3 (2 bits for major, 3 bits for minor,
+ * and 3 bits for patch), with the maximum being 3.7.7. The number for 0.0.1 is 0x02. Then it is followed by 4 null
+ * bytes, and then by ASCII S followed by the 3-number side length (before doubled and incremented), for example S001
+ * (0x53303031).
  * Example: AB C3 DE 01 00 00 00 00 00 00 00 00 53 30 30 31
  * That is a world using WorldRegion version 0.0.1, with the side length of 1 tile.
  * Then there is data, which contains the entire world data. 1 tile takes 8 bits, which is at maximum 256 tiles.
  *
- * @version 0.0.1-SNAPSHOT
  * @author massblabla
+ * @version 0.0.2-SNAPSHOT
  */
-public class WorldRegion {
+public record WorldRegion(int side, byte[][] tiles) {
     private static final int MAGIC = 0xABC3DE;
-    private static final byte VERSION = 0x01; // 0.0.1 (2-3-3 scheme collapsed into one byte)
+    private static final byte VERSION = 0x02; // 0.0.2 (2-3-3 scheme collapsed into one byte - 0000 0010)
     private static final int HEADER_NULLS = 8;
-
-    private final int side;
-    private final byte[] tiles; // 1 byte = 1 tile
-
-    public WorldRegion(int side, byte[] tiles) {
-        this.side = side;
-        this.tiles = tiles;
-    }
 
     // ====== Save ======
     public void save(String path) throws IOException {
@@ -63,8 +56,13 @@ public class WorldRegion {
             // S### (ASCII)
             out.writeBytes(String.format("S%03d", side));
 
+            // Flatten to 1D
+            byte[] rawTiles = new byte[(side * 2 + 1) * (side * 2 + 1)];
+            for (int r = 0; r < side * 2 + 1; r++)
+                System.arraycopy(tiles[r], 0, rawTiles, r * (side * 2 + 1), side * 2 + 1);
+
             // ====== Tile data (1 byte each) ======
-            out.write(tiles);
+            out.write(rawTiles);
         }
     }
 
@@ -87,7 +85,8 @@ public class WorldRegion {
 
             // Version
             byte version = in.readByte();
-            if (version != VERSION) throw new IOException("Detected version " + versioner(version) + ", wanted " + versioner(VERSION));
+            if (version != VERSION)
+                throw new IOException("Detected version " + versioner(version) + ", wanted " + versioner(VERSION));
 
             // Skip 8 null bytes
             in.skipBytes(HEADER_NULLS);
@@ -99,17 +98,18 @@ public class WorldRegion {
 
             // Read tiles
             int tileCount = (side * 2 + 1) * (side * 2 + 1);
-            byte[] tiles = new byte[tileCount];
-            in.readFully(tiles);
+            byte[] rawTiles = new byte[tileCount];
+            in.readFully(rawTiles);
+
+            byte[][] tiles = new byte[side * 2 + 1][side * 2 + 1];
+            for (int r = 0; r < side * 2 + 1; r++) {
+                System.arraycopy(rawTiles, r * (side * 2 + 1), tiles[r], 0, side * 2 + 1);
+            }
 
             return new WorldRegion(side, tiles);
         }
     }
 
     @Override
-    public String toString() {
-        return "WorldRegion(" + side + ", tiles=" + Arrays.toString(tiles) + ")";
-    }
-    public int getSide() { return side; }
-    public byte[] getTiles() { return tiles; }
+    public String toString() { return "WorldRegion(" + side + ", tiles=" + Arrays.toString(tiles) + ")"; }
 }

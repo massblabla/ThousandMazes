@@ -44,7 +44,7 @@ public class CollisionChecker {
         int entitySouthRow = entitySouthWorldY / (int)panel.tileSize;
 
         int tileNum1, tileNum2;
-        byte[][] tiles = unflatten(panel.tm.region.getTiles(), panel.tm.region.getSide() * 2 + 1, panel.tm.region.getSide() * 2 + 1);
+        byte[][] tiles = panel.tm.region.tiles();
 
         switch(entity.direction) {
             case "north" -> {
@@ -80,13 +80,5 @@ public class CollisionChecker {
                 }
             }
         }
-    }
-
-    public static byte[][] unflatten(byte[] flat, int rows, int cols) {
-        byte[][] result = new byte[rows][cols];
-        for (int r = 0; r < rows; r++) {
-            System.arraycopy(flat, r * cols, result[r], 0, cols);
-        }
-        return result;
     }
 }

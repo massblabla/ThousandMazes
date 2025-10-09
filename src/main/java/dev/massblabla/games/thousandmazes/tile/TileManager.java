@@ -128,12 +128,11 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int col = 0;
         int row = 0;
-        int mazeRows = region.getSide() * 2 + 1;
-        int mazeCols = region.getSide() * 2 + 1;
-        byte[] tiles = region.getTiles();
+        int mazeRows = region.side() * 2 + 1;
+        int mazeCols = region.side() * 2 + 1;
+        byte[][] tiles = region.tiles();
 
         while(col < mazeCols && row < mazeRows) {
-
             int worldX = col * (int)panel.tileSize;
             int worldY = row * (int)panel.tileSize;
             int screenX = worldX - panel.player.worldX + panel.player.screenX;
@@ -141,7 +140,7 @@ public class TileManager {
 
             if(worldX + panel.tileSize > panel.player.worldX - panel.player.screenX && worldX - panel.tileSize < panel.player.worldX + panel.player.screenX &&
                 worldY + panel.tileSize > panel.player.worldY - panel.player.screenY && worldY - panel.tileSize < panel.player.worldY + panel.player.screenY) {
-                g2.drawImage(tile[tiles[row * mazeCols + col]].image, screenX, screenY, (int)panel.tileSize, (int)panel.tileSize, null);
+                g2.drawImage(tile[tiles[row][col]].image, screenX, screenY, (int)panel.tileSize, (int)panel.tileSize, null);
             }
             col++;
 

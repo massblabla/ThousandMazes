@@ -19,7 +19,7 @@ package dev.massblabla.utils.worldregion;
 /**
  * Interface for classes who generate the world and its levels to implement
  *
- * @version 0.1.0-SNAPSHOT
+ * @version 0.0.2-SNAPSHOT
  * @author massblabla
  */
 public interface WorldGenerator {

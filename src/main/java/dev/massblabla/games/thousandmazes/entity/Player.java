@@ -63,7 +63,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         worldX = (int)panel.tileSize;
-        worldY = (int)panel.tileSize * (tm.region.getSide() * 2 - 1);
+        worldY = (int)panel.tileSize * (tm.region.side() * 2 - 1);
         speed = 4;
 
         direction = "south";
