@@ -37,7 +37,7 @@ public class ThousandMazes {
 	public static final Variables var = Variables.INSTANCE;
 	
 	public static void main(String[] args) {
-		MazeGenerator gen = new MazeGenerator(WorldDifficulties.STARTER, WorldMaterials.EARTHLY, 525764355);
+		MazeGenerator gen = new MazeGenerator(WorldDifficulties.STARTER, WorldMaterials.DEBUGMD, 525764355);
 		WorldRegion region = gen.generate(gen.getSide());
 
 		try {

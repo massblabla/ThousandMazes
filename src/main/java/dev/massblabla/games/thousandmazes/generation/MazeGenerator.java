@@ -94,12 +94,12 @@ public class MazeGenerator implements WorldGenerator {
         byte[][] maze2D = new byte[mazeRows][mazeCols];
 
         // Fill everything with walls initially
-        for (byte[] row : maze2D) Arrays.fill(row, tiles[0]); // wall
+        for (byte[] row : maze2D) Arrays.fill(row, (byte) 0); // wall
 
         // Mark open cells (temporary)
         for (int r = 0; r < side; r++)
             for (int c = 0; c < side; c++)
-                maze2D[r * 2 + 1][c * 2 + 1] = 1; // temporary for open space
+                maze2D[r * 2 + 1][c * 2 + 1] = 2; // temporary for open space
 
         // Prepare walls for Kruskal
         record Wall(int a, int b, int wr, int wc) { }
@@ -127,23 +127,25 @@ public class MazeGenerator implements WorldGenerator {
             int bRoot = find(parent, w.b);
             if (aRoot != bRoot) {
                 union(parent, aRoot, bRoot);
-                maze2D[w.wr][w.wc] = 1; // temporary open
+                maze2D[w.wr][w.wc] = 2; // temporary open
             }
         }
 
         // Entrance and exit
-        maze2D[side * 2][1] = 2;      // bottom-left entrance (temporary)
-        maze2D[1][side * 2] = 2;      // top-right exit (temporary)
+        maze2D[side * 2][1] = 3;      // bottom-left entrance (temporary)
+        maze2D[1][side * 2] = 3;      // top-right exit (temporary)
 
         // Map temporary values to actual tiles
-        for (int r = 0; r < mazeRows; r++) {
-            for (int c = 0; c < mazeCols; c++) {
-                if ((r == side * 2 && c == 1) || (r == 1 && c == side * 2)) {
-                    maze2D[r][c] = tiles[3]; // entrance/exit
-                } else if (maze2D[r][c] == 1 || maze2D[r][c] == 2) {
-                    maze2D[r][c] = tiles[2]; // open space
-                } else {
-                    maze2D[r][c] = tiles[0]; // wall
+        for(int r = 0; r < mazeRows; r++) {
+            for(int c = 0; c < mazeCols; c++) {
+                if(maze2D[r][c] == 0) {
+                    maze2D[r][c] = tiles[0];
+                } else if(maze2D[r][c] == 1) {
+                    maze2D[r][c] = tiles[1];
+                } else if(maze2D[r][c] == 2) {
+                    maze2D[r][c] = tiles[2];
+                } else if(maze2D[r][c] == 3) {
+                    maze2D[r][c] = tiles[3];
                 }
             }
         }
