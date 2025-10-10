@@ -55,7 +55,7 @@ public class TileManager {
 
     public void getTileTexture() {
         try {
-            texture = new TileMapHandler("/assets/thousandmazes/tilemap.png", (int)conf.requiresRestart.getDefaultTileSize());
+            texture = new TileMapHandler("/assets/thousandmazes/tilemap.png", conf.requiresRestart.getDefaultTileSize());
 
             /* Tile 0 (null) */
             tile[0x00] = new Tile();
@@ -133,14 +133,14 @@ public class TileManager {
         byte[][] tiles = region.tiles();
 
         while(col < mazeCols && row < mazeRows) {
-            int worldX = col * (int)panel.tileSize;
-            int worldY = row * (int)panel.tileSize;
+            int worldX = col * panel.tileSize;
+            int worldY = row * panel.tileSize;
             int screenX = worldX - panel.player.worldX + panel.player.screenX;
             int screenY = worldY - panel.player.worldY + panel.player.screenY;
 
             if(worldX + panel.tileSize > panel.player.worldX - panel.player.screenX && worldX - panel.tileSize < panel.player.worldX + panel.player.screenX &&
                 worldY + panel.tileSize > panel.player.worldY - panel.player.screenY && worldY - panel.tileSize < panel.player.worldY + panel.player.screenY) {
-                g2.drawImage(tile[tiles[row][col]].image, screenX, screenY, (int)panel.tileSize, (int)panel.tileSize, null);
+                g2.drawImage(tile[tiles[row][col]].image, screenX, screenY, panel.tileSize, panel.tileSize, null);
             }
             col++;
 

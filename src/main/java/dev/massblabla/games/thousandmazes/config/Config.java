@@ -46,35 +46,35 @@ public class Config {
 
 	/* [requires_restart]: Requires a restart. */
 	public class RequiresRestart {
-		private long defaultTileSize = toml.getLong("defaultTileSize");
+		private int defaultTileSize = Math.toIntExact(toml.getLong("defaultTileSize"));
 		private double defaultRelativeScale = toml.getDouble("defaultRelativeScale");
 		private boolean autoWindowSizing = toml.getBoolean("autoWindowSizing");
-		private long totalDisplayedColumns = toml.getLong("totalDisplayedColumns");
-		private long totalDisplayedRows = toml.getLong("totalDisplayedRows");
+		private int totalDisplayedColumns = Math.toIntExact(toml.getLong("totalDisplayedColumns"));
+		private int totalDisplayedRows = Math.toIntExact(toml.getLong("totalDisplayedRows"));
 
 		/* Getters */
-		public long getDefaultTileSize() { return defaultTileSize; }
+		public int getDefaultTileSize() { return defaultTileSize; }
 		public double getDefaultRelativeScale() { return defaultRelativeScale; }
 		public boolean getAutoWindowSizing() { return autoWindowSizing; }
-		public long getTotalDisplayedColumns() { return totalDisplayedColumns; }
-		public long getTotalDisplayedRows() { return totalDisplayedRows; }
+		public int getTotalDisplayedColumns() { return totalDisplayedColumns; }
+		public int getTotalDisplayedRows() { return totalDisplayedRows; }
 
 		/* Setters */
-		public void setDefaultTileSize(long in) { defaultTileSize = in;	}
+		public void setDefaultTileSize(int in) { defaultTileSize = in;	}
 		public void setDefaultRelativeScale(double in) { defaultRelativeScale = in; }
 		public void setAutoWindowSizing(boolean in) { autoWindowSizing = in; }
-		public void setTotalDisplayedColumns(long in) { totalDisplayedColumns = in; }
-		public void setTotalDisplayedRows(long in) { totalDisplayedRows = in; }
+		public void setTotalDisplayedColumns(int in) { totalDisplayedColumns = in; }
+		public void setTotalDisplayedRows(int in) { totalDisplayedRows = in; }
 	}
 
     /* [world_default]: The default options when world creation. */
     public class WorldDefault {
-        private long worldLevels = toml.getLong("worldLevels");
+        private int worldLevels = Math.toIntExact(toml.getLong("worldLevels"));
 
         /* Getters */
         public long getWorldLevels() { return worldLevels; }
 
         /* Setters */
-        public void setWorldLevels(long in) { worldLevels = in; }
+        public void setWorldLevels(int in) { worldLevels = in; }
     }
 }

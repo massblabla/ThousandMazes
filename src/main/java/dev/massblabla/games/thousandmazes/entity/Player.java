@@ -48,8 +48,8 @@ public class Player extends Entity {
         this.kh = kh;
         this.tm = new TileManager(panel);
 
-        screenX = ((int)panel.windowWidth / 2) - ((int)panel.tileSize / 2);
-        screenY = ((int)panel.windowHeight / 2) - ((int)panel.tileSize / 2);
+        screenX = (panel.windowWidth / 2) - (panel.tileSize / 2);
+        screenY = (panel.windowHeight / 2) - (panel.tileSize / 2);
 
         hitbox = new Rectangle();
         hitbox.x = 5 * (int)conf.requiresRestart.getDefaultRelativeScale();
@@ -62,8 +62,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = (int)panel.tileSize;
-        worldY = (int)panel.tileSize * (tm.region.side() * 2 - 1);
+        worldX = panel.tileSize;
+        worldY = panel.tileSize * (tm.region.side() * 2 - 1);
         speed = 4;
 
         direction = "south";
@@ -71,7 +71,7 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            player = new TileMapHandler("/assets/thousandmazes/entities/default/thomas.png", (int)conf.requiresRestart.getDefaultTileSize());
+            player = new TileMapHandler("/assets/thousandmazes/entities/default/thomas.png", conf.requiresRestart.getDefaultTileSize());
 
             north1 = player.getTile(0, 0);
             north2 = player.getTile(1, 0);
@@ -161,6 +161,6 @@ public class Player extends Entity {
                 break;
         }
 
-        g2.drawImage(image, screenX, screenY, (int)panel.tileSize, (int)panel.tileSize, null);
+        g2.drawImage(image, screenX, screenY, panel.tileSize, panel.tileSize, null);
     }
 }

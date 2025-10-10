@@ -11,6 +11,7 @@
 	  <artifactId>toml4j</artifactId>
 	  <version>0.7.2</version>
 	</dependency>
+    <!-- TODO: use a logging library -->
   </dependencies>
   <properties>
     <maven.compiler.source>21</maven.compiler.source>

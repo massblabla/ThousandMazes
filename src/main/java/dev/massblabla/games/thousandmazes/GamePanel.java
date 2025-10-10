@@ -47,9 +47,9 @@ public class GamePanel extends JPanel implements Runnable {
 	final Dimension screenSize = toolkit.getScreenSize();
 
 	/* Local variables */
-	public final long tileSize = Math.round(conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale());
-	public long windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize; /* Default: 1152 */
-	public long windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
+	public final int tileSize = Math.toIntExact(Math.round(conf.requiresRestart.getDefaultTileSize() * conf.requiresRestart.getDefaultRelativeScale()));
+	public int windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize; /* Default: 1152 */
+	public int windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;   /* Default: 672 */
 
 	/* KeyHandler */
     final KeyHandler kh = new KeyHandler();
@@ -63,15 +63,15 @@ public class GamePanel extends JPanel implements Runnable {
     public final TileManager tm = new TileManager(this);
 	
 	public GamePanel() {
-		this.setPreferredSize(new Dimension((int) windowWidth, (int) windowHeight));
+		this.setPreferredSize(new Dimension(windowWidth, windowHeight));
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(kh);
 		this.setFocusable(true);
 
 		if(conf.requiresRestart.getAutoWindowSizing()) {
-			windowWidth = (long) Math.ceil(screenSize.width / 2.4);
-			windowHeight = (long) Math.ceil(screenSize.height / 2.4);
+			windowWidth = (int)Math.ceil(screenSize.width / 2.4);
+			windowHeight = (int)Math.ceil(screenSize.height / 2.4);
 		} else {
 			windowWidth = conf.requiresRestart.getTotalDisplayedColumns() * tileSize;
 			windowHeight = conf.requiresRestart.getTotalDisplayedRows() * tileSize;

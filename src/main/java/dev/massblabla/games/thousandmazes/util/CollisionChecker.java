@@ -38,17 +38,17 @@ public class CollisionChecker {
         int entityNorthWorldY = entity.worldY + entity.hitbox.y;
         int entitySouthWorldY = entity.worldY + entity.hitbox.y + entity.hitbox.height;
 
-        int entityWestCol = entityWestWorldX / (int)panel.tileSize;
-        int entityEastCol = entityEastWorldX / (int)panel.tileSize;
-        int entityNorthRow = entityNorthWorldY / (int)panel.tileSize;
-        int entitySouthRow = entitySouthWorldY / (int)panel.tileSize;
+        int entityWestCol = entityWestWorldX / panel.tileSize;
+        int entityEastCol = entityEastWorldX / panel.tileSize;
+        int entityNorthRow = entityNorthWorldY / panel.tileSize;
+        int entitySouthRow = entitySouthWorldY / panel.tileSize;
 
         int tileNum1, tileNum2;
         byte[][] tiles = panel.tm.region.tiles();
 
         switch(entity.direction) {
             case "north" -> {
-                entityNorthRow = (entityNorthWorldY - entity.speed) / (int)panel.tileSize;
+                entityNorthRow = (entityNorthWorldY - entity.speed) / panel.tileSize;
                 tileNum1 = tiles[entityNorthRow][entityWestCol];
                 tileNum2 = tiles[entityNorthRow][entityEastCol];
                 if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
@@ -56,7 +56,7 @@ public class CollisionChecker {
                 }
             }
             case "east" -> {
-                entityEastCol = (entityEastWorldX + entity.speed) / (int)panel.tileSize;
+                entityEastCol = (entityEastWorldX + entity.speed) / panel.tileSize;
                 tileNum1 = tiles[entityNorthRow][entityEastCol];
                 tileNum2 = tiles[entitySouthRow][entityEastCol];
                 if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
@@ -64,7 +64,7 @@ public class CollisionChecker {
                 }
             }
             case "south" -> {
-                entitySouthRow = (entitySouthWorldY - entity.speed) / (int)panel.tileSize;
+                entitySouthRow = (entitySouthWorldY - entity.speed) / panel.tileSize;
                 tileNum1 = tiles[entitySouthRow][entityWestCol];
                 tileNum2 = tiles[entitySouthRow][entityEastCol];
                 if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
@@ -72,7 +72,7 @@ public class CollisionChecker {
                 }
             }
             case "west" -> {
-                entityWestCol = (entityWestWorldX - entity.speed) / (int)panel.tileSize;
+                entityWestCol = (entityWestWorldX - entity.speed) / panel.tileSize;
                 tileNum1 = tiles[entityNorthRow][entityWestCol];
                 tileNum2 = tiles[entitySouthRow][entityWestCol];
                 if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {

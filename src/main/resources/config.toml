@@ -7,7 +7,7 @@
 # Not a constant because there could be something like
 # texture packs that have bigger sizes, i.e. 32x32
 # (Note: please don't do that yet)
-# Type: long
+# Type: int
 # Default: 16
 defaultTileSize = 16
 # The default relative scale
@@ -24,12 +24,12 @@ defaultRelativeScale = 3
 autoWindowSizing = true
 # The total columns displayed on the window on startup
 # Used if autoWindowSizing is set to false.
-# Type: long
+# Type: int
 # Default: 24
 totalDisplayedColumns = 24
 # The total rows displayed on the window on startup
 # * See totalDisplayedColumns
-# Type: long
+# Type: int
 # Default: 14
 totalDisplayedRows = 14
 
@@ -38,6 +38,6 @@ totalDisplayedRows = 14
 # Yeah, it isn't always ThousandMazes, but it's the default
 # anyway. Preferrably use a number divisible by 8.
 # Irreversible after world creation.
-# Type: long
+# Type: int
 # Default: 1024
 worldLevels = 1024
