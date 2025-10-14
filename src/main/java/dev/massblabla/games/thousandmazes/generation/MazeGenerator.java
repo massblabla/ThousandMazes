@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -36,15 +36,15 @@ public class MazeGenerator implements WorldGenerator {
 
     public MazeGenerator(WorldDifficulties difficulty, WorldMaterials material, long seed) {
         switch (difficulty) {
-            case STARTER -> side = 20;
-            case EASY -> side = 30;
-            case MEDIUM -> side = 40;
-            case INTERMEDIATE -> side = 60;
-            case HARD -> side = 80;
-            case VERY_HARD -> side = 100;
-            case INSANE -> side = 140;
-            case EXTREME -> side = 200;
-            case HARDCORE -> side = 300;
+            case STARTER -> side = 10;
+            case EASY -> side = 15;
+            case MEDIUM -> side = 20;
+            case INTERMEDIATE -> side = 30;
+            case HARD -> side = 40;
+            case VERY_HARD -> side = 50;
+            case INSANE -> side = 70;
+            case EXTREME -> side = 100;
+            case HARDCORE -> side = 150;
             default -> throw new IllegalArgumentException("Invalid world difficulty.");
         }
         switch (material) {

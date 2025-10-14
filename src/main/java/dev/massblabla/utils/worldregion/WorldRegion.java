@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -67,11 +67,7 @@ public record WorldRegion(int side, byte[][] tiles) {
     }
 
     private static String versioner(byte version) {
-        int major = (version >> 6) & 0b11;
-        int minor = (version >> 3) & 0b111;
-        int patch = (version) & 0b111;
-
-        return major + "." + minor + "." + patch;
+        return ((version >> 6) & 0xF) + "." + ((version >> 3) & 0b111) + "." + ((version) & 0b111);
     }
 
     // ====== Load ======

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -22,14 +22,14 @@ package dev.massblabla.games.thousandmazes.generation.enums;
  * @author massblabla
  */
 public enum WorldDifficulties {
-    STARTER, /* 41x41, 5% */
-    EASY, /* 61x61, 8% */
-    MEDIUM, /* 81x81, 12%, default */
-    INTERMEDIATE, /* 121x121, 16% */
-    HARD, /* 161x161, 20% */
-    VERY_HARD, /* 201x201, 25% */
-    INSANE, /* 281x281, 30% */
-    EXTREME, /* 401x401, 35% */
-    HARDCORE//, /* 601x601, 40%, one-life */
+    STARTER, /* 21x21, 5% */
+    EASY, /* 31x31, 8% */
+    MEDIUM, /* 41x41, 12%, default */
+    INTERMEDIATE, /* 61x61, 16% */
+    HARD, /* 81x81, 20% */
+    VERY_HARD, /* 101x101, 25% */
+    INSANE, /* 141x141, 30% */
+    EXTREME, /* 201x201, 35% */
+    HARDCORE//, /* 301x301, 40%, one-life */
     //CUSTOM /* Customisable (on world generation) */
 }

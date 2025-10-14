@@ -14,14 +14,13 @@
  * ThousandMazes. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.massblabla.utils.worldregion;
+package dev.massblabla.games.thousandmazes.generation;
 
 /**
- * Interface for classes who generate the world and its levels to implement
+ * Handles world levels
  *
- * @version 0.0.2-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  * @author massblabla
  */
-public interface WorldGenerator {
-    WorldRegion generate(int side);
+public class WorldLevelHandler {
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  * 
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under 
@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
     private static final long serialVersionUID = -3544079111988284342L;
 	
 	/* Variables+Config shortcut */
-	public static final Variables var = Variables.INSTANCE;
+	public static final Variables var = Variables.instance;
 	public static final Config conf = Config.instance;
 
 	/* Gets screen width and height for autoWindowSizing */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  * 
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under 
@@ -34,10 +34,10 @@ import java.io.IOException;
  */
 public class ThousandMazes {
 	/* Variables shortcut */
-	public static final Variables var = Variables.INSTANCE;
+	public static final Variables var = Variables.instance;
 	
 	public static void main(String[] args) {
-		MazeGenerator gen = new MazeGenerator(WorldDifficulties.STARTER, WorldMaterials.DEBUGMD, 525764355);
+		MazeGenerator gen = new MazeGenerator(WorldDifficulties.MEDIUM, WorldMaterials.EARTHLY, 525764355);
 		WorldRegion region = gen.generate(gen.getSide());
 
 		try {

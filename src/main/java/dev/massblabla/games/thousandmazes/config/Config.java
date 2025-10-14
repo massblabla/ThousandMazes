@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  * 
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under 

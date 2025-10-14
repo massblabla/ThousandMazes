@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -16,6 +16,7 @@
 package dev.massblabla.games.thousandmazes.util;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +30,6 @@ import java.io.InputStream;
 public class TileMapHandler {
     private final BufferedImage tilemap;
     private final int tileSize;
-
     public TileMapHandler(String path, int tileSize) throws IOException {
         this.tileSize = tileSize;
 
@@ -42,7 +42,14 @@ public class TileMapHandler {
         }
     }
 
-    public BufferedImage getTile(int col, int row) {
-        return tilemap.getSubimage(col * tileSize, row * tileSize, tileSize, tileSize);
+    public BufferedImage getTile(int col, int row, double scale) {
+        BufferedImage image = tilemap.getSubimage(col * tileSize, row * tileSize, tileSize, tileSize);
+
+        BufferedImage scaledImage = new BufferedImage((int)(tileSize * scale), (int)(tileSize * scale), image.getType());
+        Graphics2D g2 = scaledImage.createGraphics();
+        g2.drawImage(image, 0, 0, (int)(tileSize * scale), (int)(tileSize * scale), null);
+        g2.dispose();
+
+        return scaledImage;
     }
 }

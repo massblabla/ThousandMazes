@@ -41,3 +41,6 @@ totalDisplayedRows = 14
 # Type: int
 # Default: 1024
 worldLevels = 1024
+
+[debug_options] # Options usable with parameter --debug
+# TODO: Add something and implement it.

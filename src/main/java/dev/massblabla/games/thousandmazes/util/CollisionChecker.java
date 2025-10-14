@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -26,7 +26,7 @@ import dev.massblabla.games.thousandmazes.entity.Entity;
  * @author massblabla
  */
 public class CollisionChecker {
-    final GamePanel panel;
+    private final GamePanel panel;
 
     public CollisionChecker(GamePanel panel) {
         this.panel = panel;
@@ -48,34 +48,50 @@ public class CollisionChecker {
 
         switch(entity.direction) {
             case "north" -> {
-                entityNorthRow = (entityNorthWorldY - entity.speed) / panel.tileSize;
-                tileNum1 = tiles[entityNorthRow][entityWestCol];
-                tileNum2 = tiles[entityNorthRow][entityEastCol];
-                if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                try {
+                    entityNorthRow = (entityNorthWorldY - entity.speed) / panel.tileSize;
+                    tileNum1 = tiles[entityNorthRow][entityWestCol];
+                    tileNum2 = tiles[entityNorthRow][entityEastCol];
+                    if (panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                        entity.isCollisionOn = true;
+                    }
+                } catch (ArrayIndexOutOfBoundsException aioobex) {
                     entity.isCollisionOn = true;
                 }
             }
             case "east" -> {
-                entityEastCol = (entityEastWorldX + entity.speed) / panel.tileSize;
-                tileNum1 = tiles[entityNorthRow][entityEastCol];
-                tileNum2 = tiles[entitySouthRow][entityEastCol];
-                if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                try {
+                    entityEastCol = (entityEastWorldX + entity.speed) / panel.tileSize;
+                    tileNum1 = tiles[entityNorthRow][entityEastCol];
+                    tileNum2 = tiles[entitySouthRow][entityEastCol];
+                    if (panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                        entity.isCollisionOn = true;
+                    }
+                } catch (ArrayIndexOutOfBoundsException aioobex) {
                     entity.isCollisionOn = true;
                 }
             }
             case "south" -> {
-                entitySouthRow = (entitySouthWorldY - entity.speed) / panel.tileSize;
-                tileNum1 = tiles[entitySouthRow][entityWestCol];
-                tileNum2 = tiles[entitySouthRow][entityEastCol];
-                if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                try {
+                    entitySouthRow = (entitySouthWorldY - entity.speed) / panel.tileSize;
+                    tileNum1 = tiles[entitySouthRow][entityWestCol];
+                    tileNum2 = tiles[entitySouthRow][entityEastCol];
+                    if (panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                        entity.isCollisionOn = true;
+                    }
+                } catch (ArrayIndexOutOfBoundsException aioobex) {
                     entity.isCollisionOn = true;
                 }
             }
             case "west" -> {
-                entityWestCol = (entityWestWorldX - entity.speed) / panel.tileSize;
-                tileNum1 = tiles[entityNorthRow][entityWestCol];
-                tileNum2 = tiles[entitySouthRow][entityWestCol];
-                if(panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                try {
+                    entityWestCol = (entityWestWorldX - entity.speed) / panel.tileSize;
+                    tileNum1 = tiles[entityNorthRow][entityWestCol];
+                    tileNum2 = tiles[entitySouthRow][entityWestCol];
+                    if (panel.tm.tile[tileNum1].collision || panel.tm.tile[tileNum2].collision) {
+                        entity.isCollisionOn = true;
+                    }
+                } catch (ArrayIndexOutOfBoundsException aioobex) {
                     entity.isCollisionOn = true;
                 }
             }

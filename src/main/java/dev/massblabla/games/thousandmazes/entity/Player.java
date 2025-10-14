@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -52,10 +52,10 @@ public class Player extends Entity {
         screenY = (panel.windowHeight / 2) - (panel.tileSize / 2);
 
         hitbox = new Rectangle();
-        hitbox.x = 5 * (int)conf.requiresRestart.getDefaultRelativeScale();
-        hitbox.y = 5 * (int)conf.requiresRestart.getDefaultRelativeScale();
-        hitbox.width = 6 * (int)conf.requiresRestart.getDefaultRelativeScale();
-        hitbox.height = 6 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.x = 3 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.y = 3 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.width = 8 * (int)conf.requiresRestart.getDefaultRelativeScale();
+        hitbox.height = 8 * (int)conf.requiresRestart.getDefaultRelativeScale();
 
         setDefaultValues();
         getPlayerImage();
@@ -73,14 +73,14 @@ public class Player extends Entity {
         try {
             player = new TileMapHandler("/assets/thousandmazes/entities/default/thomas.png", conf.requiresRestart.getDefaultTileSize());
 
-            north1 = player.getTile(0, 0);
-            north2 = player.getTile(1, 0);
-            east1 = player.getTile(0, 1);
-            east2 = player.getTile(1, 1);
-            south1 = player.getTile(0, 2);
-            south2 = player.getTile(1, 2);
-            west1 = player.getTile(0, 3);
-            west2 = player.getTile(1, 3);
+            north1 = player.getTile(0, 0, conf.requiresRestart.getDefaultRelativeScale());
+            north2 = player.getTile(1, 0, conf.requiresRestart.getDefaultRelativeScale());
+            east1 = player.getTile(0, 1, conf.requiresRestart.getDefaultRelativeScale());
+            east2 = player.getTile(1, 1, conf.requiresRestart.getDefaultRelativeScale());
+            south1 = player.getTile(0, 2, conf.requiresRestart.getDefaultRelativeScale());
+            south2 = player.getTile(1, 2, conf.requiresRestart.getDefaultRelativeScale());
+            west1 = player.getTile(0, 3, conf.requiresRestart.getDefaultRelativeScale());
+            west2 = player.getTile(1, 3, conf.requiresRestart.getDefaultRelativeScale());
         } catch (IOException ioex) {
             ioex.printStackTrace();
         }

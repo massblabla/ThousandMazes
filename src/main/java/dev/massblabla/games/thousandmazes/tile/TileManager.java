@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  *
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under
@@ -57,72 +57,54 @@ public class TileManager {
         try {
             texture = new TileMapHandler("/assets/thousandmazes/tilemap.png", conf.requiresRestart.getDefaultTileSize());
 
-            /* Tile 0 (null) */
-            tile[0x00] = new Tile();
-            tile[0x00].image = texture.getTile(0x0, 0x0);
+            /* Use setupTile for all tiles (index, tmCol, tmRow, collision) */
+            setupTile(0x00, 0x0, 0x0, true); // null
 
-            /* thousandmazes:debugmd materials */
-            /* Tile 1 (debug wall) */
-            tile[0x01] = new Tile(); tile[0x01].image = texture.getTile(0x1, 0x0); tile[0x01].collision = true;
-            /* Tile 2 (debug obstacle) */
-            tile[0x02] = new Tile(); tile[0x02].image = texture.getTile(0x2, 0x0); tile[0x02].collision = true;
-            /* Tile 3 (debug path) */
-            tile[0x03] = new Tile(); tile[0x03].image = texture.getTile(0x3, 0x0);
-            /* Tile 4 (debug en/ex) */
-            tile[0x04] = new Tile(); tile[0x04].image = texture.getTile(0x4, 0x0);
+            /* debug materials */
+            setupTile(0x01, 0x1, 0x0, true); // debug wall
+            setupTile(0x02, 0x2, 0x0, true); // debug obstacle
+            setupTile(0x03, 0x3, 0x0, false); // debug path
+            setupTile(0x04, 0x4, 0x0, false); // debug en/ex
 
-            /* thousandmazes:earthly materials */
-            /* Tile 5 (earthly wall) */
-            tile[0x05] = new Tile(); tile[0x05].image = texture.getTile(0x5, 0x0); tile[0x05].collision = true;
-            /* Tile 6 (earthly obstacle) */
-            tile[0x06] = new Tile(); tile[0x06].image = texture.getTile(0x6, 0x0); tile[0x06].collision = true;
-            /* Tile 7 (earthly path) */
-            tile[0x07] = new Tile(); tile[0x07].image = texture.getTile(0x7, 0x0);
-            /* Tile 8 (earthly en/ex) */
-            tile[0x08] = new Tile(); tile[0x08].image = texture.getTile(0x8, 0x0);
+            /* earthly */
+            setupTile(0x05, 0x5, 0x0, true); // earthly wall
+            setupTile(0x06, 0x6, 0x0, true); // earthly obstacle
+            setupTile(0x07, 0x7, 0x0, false); // earthly path
+            setupTile(0x08, 0x8, 0x0, false); // earthly en/ex
 
-            /* thousandmazes:hellish materials */
-            /* Tile 9 (hellish wall) */
-            tile[0x09] = new Tile(); tile[0x09].image = texture.getTile(0x9, 0x0); tile[0x09].collision = true;
-            /* Tile 10 (hellish obstacle) */
-            tile[0x0A] = new Tile(); tile[0x0A].image = texture.getTile(0xA, 0x0); tile[0x0A].collision = true;
-            /* Tile 11 (hellish path) */
-            tile[0x0B] = new Tile(); tile[0x0B].image = texture.getTile(0xB, 0x0);
-            /* Tile 12 (hellish en/ex) */
-            tile[0x0C] = new Tile(); tile[0x0C].image = texture.getTile(0xC, 0x0);
+            /* hellish */
+            setupTile(0x09, 0x9, 0x0, true); // hellish wall
+            setupTile(0x0A, 0xA, 0x0, true); // hellish obstacle
+            setupTile(0x0B, 0xB, 0x0, false); // hellish path
+            setupTile(0x0C, 0xC, 0x0, false); // hellish en/ex
 
-            /* thousandmazes:stellar materials */
-            /* Tile 13 (stellar wall) */
-            tile[0x0D] = new Tile(); tile[0x0D].image = texture.getTile(0xD, 0x0); tile[0x0D].collision = true;
-            /* Tile 14 (stellar obstacle) */
-            tile[0x0E] = new Tile(); tile[0x0E].image = texture.getTile(0xE, 0x0); tile[0x0E].collision = true;
-            /* Tile 15 (stellar path) */
-            tile[0x0F] = new Tile(); tile[0x0F].image = texture.getTile(0xF, 0x0);
-            /* Tile 16 (stellar en/ex) */
-            tile[0x10] = new Tile(); tile[0x10].image = texture.getTile(0x0, 0x1);
+            /* stellar */
+            setupTile(0x0D, 0xD, 0x0, true); // stellar wall
+            setupTile(0x0E, 0xE, 0x0, true); // stellar obstacle
+            setupTile(0x0F, 0xF, 0x0, false); // stellar path
+            setupTile(0x10, 0x0, 0x1, false); // stellar en/ex
 
-            /* thousandmazes:dungeon materials */
-            /* Tile 17 (dungeon wall) */
-            tile[0x11] = new Tile(); tile[0x11].image = texture.getTile(0x1, 0x1); tile[0x11].collision = true;
-            /* Tile 18 (dungeon obstacle) */
-            tile[0x12] = new Tile(); tile[0x12].image = texture.getTile(0x2, 0x1); tile[0x12].collision = true;
-            /* Tile 19 (dungeon path) */
-            tile[0x13] = new Tile(); tile[0x13].image = texture.getTile(0x3, 0x1);
-            /* Tile 20 (dungeon en/ex) */
-            tile[0x14] = new Tile(); tile[0x14].image = texture.getTile(0x4, 0x1);
+            /* dungeon */
+            setupTile(0x11, 0x1, 0x1, true); // dungeon wall
+            setupTile(0x12, 0x2, 0x1, true); // dungeon obstacle
+            setupTile(0x13, 0x3, 0x1, false); // dungeon path
+            setupTile(0x14, 0x4, 0x1, false); // dungeon en/ex
 
-            /* thousandmazes:colored materials */
-            /* Tile 21 (colored wall) */
-            tile[0x15] = new Tile(); tile[0x15].image = texture.getTile(0x5, 0x1); tile[0x15].collision = true;
-            /* Tile 22 (colored obstacle) */
-            tile[0x16] = new Tile(); tile[0x16].image = texture.getTile(0x6, 0x1); tile[0x16].collision = true;
-            /* Tile 23 (colored path) */
-            tile[0x17] = new Tile(); tile[0x17].image = texture.getTile(0x7, 0x1);
-            /* Tile 24 (colored en/ex) */
-            tile[0x18] = new Tile(); tile[0x18].image = texture.getTile(0x8, 0x1);
+            /* colored */
+            setupTile(0x15, 0x5, 0x1, true); // colored wall
+            setupTile(0x16, 0x6, 0x1, true); // colored obstacle
+            setupTile(0x17, 0x7, 0x1, false); // colored path
+            setupTile(0x18, 0x8, 0x1, false); // colored en/ex
         } catch (IOException ioex) {
             ioex.printStackTrace();
         }
+    }
+
+    public void setupTile(int index, int tmCol, int tmRow, boolean collision) {
+        tile[index] = new Tile();
+        tile[index].image = texture.getTile(tmCol, tmRow, conf.requiresRestart.getDefaultRelativeScale());
+
+        tile[index].collision = collision;
     }
 
     public void draw(Graphics2D g2) {
@@ -140,7 +122,7 @@ public class TileManager {
 
             if(worldX + panel.tileSize > panel.player.worldX - panel.player.screenX && worldX - panel.tileSize < panel.player.worldX + panel.player.screenX &&
                 worldY + panel.tileSize > panel.player.worldY - panel.player.screenY && worldY - panel.tileSize < panel.player.worldY + panel.player.screenY) {
-                g2.drawImage(tile[tiles[row][col]].image, screenX, screenY, panel.tileSize, panel.tileSize, null);
+                g2.drawImage(tile[tiles[row][col]].image, screenX, screenY, null);
             }
             col++;
 

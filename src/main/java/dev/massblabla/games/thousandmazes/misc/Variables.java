@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [insert release year] massblabla
+ * Copyright (C) 2025 massblabla
  * 
  * This file is part of ThousandMazes.
  * ThousandMazes is free software: you can redistribute it and/or modify it under 
@@ -24,7 +24,7 @@ package dev.massblabla.games.thousandmazes.misc;
  */
 public class Variables {
 	/* Instance accessor */
-	public static final Variables INSTANCE = new Variables();
+	public static final Variables instance = new Variables();
 	
 	/* Supplements */
 	public final String space = " ";
