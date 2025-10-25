@@ -19,7 +19,7 @@ package dev.massblabla.games.thousandmazes.generation;
 /**
  * Handles world levels
  *
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public class WorldLevelHandler {

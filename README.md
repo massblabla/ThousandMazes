@@ -15,7 +15,7 @@ Libraries Used:
 
 ## Changelog
 ### [Pre-releases](https://github.com/massblabla/ThousandMazes/releases/tag/v0.x.x)
-[0.2.0-SNAPSHOT]() - 25 October 2025
+[0.2.0-SNAPSHOT](https://github.com/massblabla/ThousandMazes/commit/) - 25 October 2025
 - Additions
 - - `keybind.toml` for keybinds instead of it being hard-coded
 - - Add a tile checker
