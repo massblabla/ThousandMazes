@@ -20,9 +20,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Parent class for any entities.
+ * Parent class for all entities.
  *
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public class Entity {

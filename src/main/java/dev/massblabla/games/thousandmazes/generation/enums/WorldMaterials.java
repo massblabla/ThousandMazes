@@ -18,14 +18,14 @@ package dev.massblabla.games.thousandmazes.generation.enums;
 /**
  * Contains materials per world can use. If changed can lead to world corruption.
  *
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public enum WorldMaterials {
     DEBUGMD, /* Customisable (--debug only) */
     EARTHLY, /* Uses #thousandmazes:earthly materials, default */
     HELLISH, /* Uses #thousandmazes:hellish materials */
-    STELLAR, /* Uses #thousandmazes:stellar materials */
+    METALLIC, /* Uses #thousandmazes:metallic materials */
     DUNGEON, /* Uses #thousandmazes:dungeon materials */
     COLORED//, /* Uses #thousandmazes:colored materials */
     //CUSTOM /* Customisable (on world generation) */

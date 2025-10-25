@@ -14,17 +14,19 @@
  * ThousandMazes. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.massblabla.games.thousandmazes.tile;
+package dev.massblabla.games.thousandmazes.objects;
 
 import java.awt.image.BufferedImage;
 
 /**
- * Parent class for all tiles.
+ * Parent class for all objects
  *
  * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
-public class Tile {
+public class ObjectComponent {
     public BufferedImage image;
+    public String name;
     public boolean collision = false;
+    public int worldX, worldY;
 }

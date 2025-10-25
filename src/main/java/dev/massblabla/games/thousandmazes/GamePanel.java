@@ -24,14 +24,16 @@ import javax.swing.JPanel;
 import dev.massblabla.games.thousandmazes.config.Config;
 import dev.massblabla.games.thousandmazes.entity.Player;
 import dev.massblabla.games.thousandmazes.misc.Variables;
+import dev.massblabla.games.thousandmazes.objects.ObjectComponent;
 import dev.massblabla.games.thousandmazes.tile.TileManager;
 import dev.massblabla.games.thousandmazes.util.CollisionChecker;
 import dev.massblabla.games.thousandmazes.util.KeyHandler;
+import dev.massblabla.games.thousandmazes.util.TileChecker;
 
 /**
  * ThousandMazes' game panel.
  * 
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public class GamePanel extends JPanel implements Runnable {
@@ -57,8 +59,12 @@ public class GamePanel extends JPanel implements Runnable {
 	Thread gameThread;
 	/* Player entity class */
     public final Player player = new Player(this, kh);
+    /* Objects */
+    public final ObjectComponent[] obj = new ObjectComponent[10];
     /* CollisionChecker */
     public final CollisionChecker cc = new CollisionChecker(this);
+    /* TileChecker */
+    public final TileChecker tc = new TileChecker(this);
     /* TileManager */
     public final TileManager tm = new TileManager(this);
 	

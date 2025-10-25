@@ -14,17 +14,32 @@
  * ThousandMazes. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.massblabla.games.thousandmazes.tile;
+package dev.massblabla.games.thousandmazes.objects;
 
-import java.awt.image.BufferedImage;
+import dev.massblabla.games.thousandmazes.config.Config;
+import dev.massblabla.games.thousandmazes.util.TileMapHandler;
+
+import java.io.IOException;
 
 /**
- * Parent class for all tiles.
+ * Treasure chest object.
  *
  * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
-public class Tile {
-    public BufferedImage image;
-    public boolean collision = false;
+public class Chest extends ObjectComponent {
+    public static Config conf;
+    TileMapHandler chest;
+
+    public Chest() {
+        name = "Chest";
+
+        try {
+            chest = new TileMapHandler("/assets/thousandmazes/tilemap.png", conf.requiresRestart.getDefaultTileSize());
+
+            image = chest.getTile(0x9, 0x1, conf.requiresRestart.getDefaultRelativeScale());
+        } catch (IOException ioex) {
+            ioex.printStackTrace();
+        }
+    }
 }

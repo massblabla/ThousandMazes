@@ -14,17 +14,28 @@
  * ThousandMazes. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package dev.massblabla.games.thousandmazes.tile;
+package dev.massblabla.games.thousandmazes.util;
 
-import java.awt.image.BufferedImage;
+import dev.massblabla.games.thousandmazes.GamePanel;
+import dev.massblabla.games.thousandmazes.entity.Entity;
 
 /**
- * Parent class for all tiles.
+ * Checks the tile where the entity is standing at.
  *
  * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
-public class Tile {
-    public BufferedImage image;
-    public boolean collision = false;
+public class TileChecker {
+    final GamePanel panel;
+
+    public TileChecker(GamePanel panel) { this.panel = panel; }
+
+    public byte getTile(Entity entity) {
+        int entityCol = entity.worldX * panel.tileSize;
+        int entityRow = entity.worldY * panel.tileSize;
+
+        byte[][] tiles = panel.tm.region.tiles();
+
+        return tiles[entityCol][entityRow];
+    }
 }

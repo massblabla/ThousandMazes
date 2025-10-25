@@ -26,7 +26,7 @@ import java.util.*;
 /**
  * Generates mazes and saves it.
  *
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public class MazeGenerator implements WorldGenerator {
@@ -52,7 +52,7 @@ public class MazeGenerator implements WorldGenerator {
             case DEBUGMD -> tiles = new byte[]{0x01, 0x02, 0x03, 0x04};
             case EARTHLY -> tiles = new byte[]{0x05, 0x06, 0x07, 0x08};
             case HELLISH -> tiles = new byte[]{0x09, 0x0A, 0x0B, 0x0C};
-            case STELLAR -> tiles = new byte[]{0x0D, 0x0E, 0x0F, 0x10};
+            case METALLIC -> tiles = new byte[]{0x0D, 0x0E, 0x0F, 0x10};
             case DUNGEON -> tiles = new byte[]{0x11, 0x12, 0x13, 0x14};
             case COLORED -> tiles = new byte[]{0x15, 0x16, 0x17, 0x18};
             default -> throw new IllegalArgumentException("Invalid world material type.");
@@ -156,4 +156,5 @@ public class MazeGenerator implements WorldGenerator {
     public int getSide() {
         return side;
     }
+    public long getSeed() { return seed; }
 }

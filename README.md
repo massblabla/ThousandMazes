@@ -1,5 +1,5 @@
 # ThousandMazes
-### Version 0.1.0-SNAPSHOT
+### Version 0.2.0-SNAPSHOT
 **Copyright (C) 2025 massblabla**  
 A Free (libre) game that features 1,024 randomly-generated mazes that get harder every level.
   
@@ -15,9 +15,11 @@ Libraries Used:
 
 ## Changelog
 ### [Pre-releases](https://github.com/massblabla/ThousandMazes/releases/tag/v0.x.x)
-[0.2.0-SNAPSHOT] - N/A
+[0.2.0-SNAPSHOT]() - 25 October 2025
 - Additions
 - - `keybind.toml` for keybinds instead of it being hard-coded
+- - Add a tile checker
+- - Prepare objects
 - Modifications
 - - Resize player's hitbox from 12x12 to 8x8
 - - Change entrance/exit tiles texture
@@ -27,10 +29,10 @@ Libraries Used:
 - - Use `int` instead of `long` in config variables
 - - Outside map boundaries now have collision instead of crashing
 - - Scale tile directly from `TileMapHandler` instead of classes manually handling the scaling
-- - Separate WorldRegion from ThousandMazes
 - - Resize world size per difficulty again
+- - Rename and change stellar textures into metallic textures
+- - Retexture colored tiles
 - Deletions
-- - WorldRegion code (now on its own repository)
 
 [0.1.0-SNAPSHOT](https://github.com/massblabla/ThousandMazes/commit/fc3ba1e843a9188d55367ba8014a7f22d3e5389d) - 5 October 2025
 - Additions

@@ -22,11 +22,11 @@ import dev.massblabla.games.thousandmazes.entity.Entity;
 /**
  * Checks the collision.
  *
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public class CollisionChecker {
-    private final GamePanel panel;
+    final GamePanel panel;
 
     public CollisionChecker(GamePanel panel) {
         this.panel = panel;

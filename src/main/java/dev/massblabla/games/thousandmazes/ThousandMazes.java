@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * ThousandMazes' main class.
  * 
- * @version 0.1.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  * @author massblabla
  */
 public class ThousandMazes {
@@ -37,7 +37,7 @@ public class ThousandMazes {
 	public static final Variables var = Variables.instance;
 	
 	public static void main(String[] args) {
-		MazeGenerator gen = new MazeGenerator(WorldDifficulties.MEDIUM, WorldMaterials.EARTHLY, 525764355);
+		MazeGenerator gen = new MazeGenerator(WorldDifficulties.MEDIUM, WorldMaterials.DEBUGMD, 525764355);
 		WorldRegion region = gen.generate(gen.getSide());
 
 		try {
